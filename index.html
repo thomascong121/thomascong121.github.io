@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cong Cong | Postdoctoral Fellow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --bg3: #1a1a28;
+  --card: #16162266;
+  --border: #ffffff10;
+  --text: #e4e4ed;
+  --text2: #9494a8;
+  --accent: #6366f1;
+  --accent2: #818cf8;
+  --accent-glow: #6366f133;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --cyan: #06b6d4;
+  --rose: #f43f5e;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Animated gradient bg */
+.bg-grid {
+  position: fixed; inset:0; z-index:-1;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-glow), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, #06b6d415, transparent);
+}
+
+/* Nav */
+nav {
+  position: fixed; top:0; width:100%; z-index:100;
+  backdrop-filter: blur(20px); background: #0a0a0fcc;
+  border-bottom: 1px solid var(--border);
+  transition: all .3s;
+}
+nav .inner {
+  max-width: 1200px; margin:0 auto; padding: 0.8rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+nav .logo { font-weight:700; font-size:1.1rem; letter-spacing:-0.5px; }
+nav .logo span { color: var(--accent); }
+nav .links { display:flex; gap:2rem; }
+nav .links a {
+  color: var(--text2); text-decoration:none; font-size:0.85rem;
+  font-weight:500; letter-spacing:0.3px; transition: color .2s;
+}
+nav .links a:hover { color: var(--accent2); }
+
+/* Sections */
+section { max-width:1200px; margin:0 auto; padding: 6rem 2rem 2rem; }
+
+/* Hero */
+.hero {
+  min-height:100vh; display:flex; align-items:center;
+  padding-top:0; position:relative;
+}
+.hero-inner {
+  display:flex; align-items:center; gap:3rem; width:100%;
+}
+.hero-photo {
+  width:220px; height:220px; border-radius:50%; overflow:hidden;
+  border:3px solid var(--border); flex-shrink:0;
+  box-shadow: 0 0 40px var(--accent-glow), 0 0 80px #06b6d410;
+  transition: transform .4s, box-shadow .4s;
+}
+.hero-photo:hover {
+  transform:scale(1.03);
+  box-shadow: 0 0 50px var(--accent-glow), 0 0 100px #06b6d420;
+}
+.hero-photo img {
+  width:100%; height:100%; object-fit:cover;
+}
+.hero-content { max-width: 700px; }
+.hero .tag {
+  display:inline-block; font-size:0.75rem; font-weight:600;
+  color: var(--accent2); background: var(--accent-glow);
+  border: 1px solid #6366f144; border-radius:99px;
+  padding: 0.3rem 1rem; margin-bottom:1.5rem;
+  letter-spacing: 1px; text-transform:uppercase;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight:800; line-height:1.1;
+  letter-spacing:-2px; margin-bottom:1rem;
+}
+.hero h1 .gradient {
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero .subtitle {
+  font-size:1.15rem; color:var(--text2); margin-bottom:1.5rem;
+  max-width:560px; line-height:1.7;
+}
+.hero .affiliations {
+  display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2rem;
+}
+.hero .affiliations span {
+  font-size:0.78rem; color:var(--text2); background:var(--bg3);
+  border:1px solid var(--border); border-radius:6px; padding:0.35rem 0.8rem;
+}
+.hero .social-links { display:flex; gap:1rem; }
+.hero .social-links a {
+  width:42px; height:42px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg3); border:1px solid var(--border);
+  color:var(--text2); text-decoration:none; font-size:1.1rem;
+  transition: all .25s;
+}
+.hero .social-links a:hover {
+  color:var(--accent2); border-color:var(--accent);
+  transform:translateY(-2px); box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+/* Stats bar */
+.stats-bar {
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap:1px; background: var(--border); border-radius:16px; overflow:hidden;
+  margin: 2rem 0 4rem;
+}
+.stat-card {
+  background: var(--bg2); padding:1.8rem 1.5rem; text-align:center;
+  position:relative; overflow:hidden;
+}
+.stat-card::before {
+  content:''; position:absolute; top:0; left:50%;
+  transform:translateX(-50%); width:40%; height:2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity:0; transition: opacity .3s;
+}
+.stat-card:hover::before { opacity:1; }
+.stat-card .number {
+  font-size:2.2rem; font-weight:800; letter-spacing:-1px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.stat-card .number.accent { color: var(--accent2); }
+.stat-card .number.green { color: var(--green); }
+.stat-card .number.amber { color: var(--amber); }
+.stat-card .number.cyan { color: var(--cyan); }
+.stat-card .label {
+  font-size:0.78rem; color:var(--text2); margin-top:0.3rem;
+  text-transform:uppercase; letter-spacing:1px; font-weight:500;
+}
+.stat-card .live-dot {
+  display:inline-block; width:6px; height:6px; border-radius:50%;
+  background:var(--green); margin-right:4px; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; } 50% { opacity:0.3; }
+}
+
+/* News timeline */
+.news-list { display:flex; flex-direction:column; gap:0; position:relative; }
+.news-list::before {
+  content:''; position:absolute; left:19px; top:8px; bottom:8px;
+  width:2px; background: linear-gradient(to bottom, var(--accent), var(--cyan), transparent);
+}
+.news-item {
+  display:flex; gap:1.2rem; align-items:flex-start;
+  padding: 0.8rem 0; position:relative;
+}
+.news-dot {
+  width:10px; height:10px; min-width:10px; border-radius:50%;
+  margin-top:6px; z-index:1; border:2px solid var(--bg);
+}
+.news-dot.paper { background: var(--accent2); box-shadow: 0 0 8px var(--accent-glow); }
+.news-dot.award { background: var(--amber); box-shadow: 0 0 8px #f59e0b33; }
+.news-dot.milestone { background: var(--green); box-shadow: 0 0 8px #22c55e33; }
+.news-dot.talk { background: var(--cyan); box-shadow: 0 0 8px #06b6d433; }
+.news-body { flex:1; }
+.news-body .news-date {
+  font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+  color:var(--text2); margin-bottom:0.2rem; letter-spacing:0.5px;
+}
+.news-body .news-text {
+  font-size:0.88rem; color:var(--text); line-height:1.55;
+}
+.news-body .news-text .venue-tag {
+  display:inline-block; font-size:0.7rem; font-weight:600;
+  padding:0.15rem 0.5rem; border-radius:4px; margin-left:4px;
+  vertical-align:middle;
+}
+.venue-tag.top { background:#6366f133; color:var(--accent2); border:1px solid #6366f144; }
+.venue-tag.journal { background:#06b6d422; color:var(--cyan); border:1px solid #06b6d444; }
+.venue-tag.grant { background:#f59e0b22; color:var(--amber); border:1px solid #f59e0b44; }
+.news-toggle {
+  background:var(--bg3); border:1px solid var(--border);
+  color:var(--text2); padding:0.5rem 1.2rem; border-radius:8px;
+  font-size:0.82rem; cursor:pointer; font-family:inherit;
+  margin-top:1rem; transition: all .2s; display:none;
+}
+.news-toggle:hover { border-color:var(--accent); color:var(--accent2); }
+
+/* Section headers */
+.section-header {
+  margin-bottom:3rem;
+}
+.section-header h2 {
+  font-size:1.8rem; font-weight:700; letter-spacing:-1px;
+  margin-bottom:0.5rem;
+}
+.section-header h2 span { color: var(--accent2); }
+.section-header p { color:var(--text2); font-size:0.95rem; }
+
+/* About */
+.about-grid {
+  display:grid; grid-template-columns: 1fr 1fr; gap:2rem;
+}
+.about-card {
+  background: var(--card); border:1px solid var(--border);
+  border-radius:16px; padding:2rem; backdrop-filter:blur(10px);
+  transition: border-color .3s;
+}
+.about-card:hover { border-color: #6366f144; }
+.about-card h3 {
+  font-size:1rem; font-weight:600; margin-bottom:1rem;
+  display:flex; align-items:center; gap:0.6rem;
+}
+.about-card h3 i { color:var(--accent2); font-size:1.1rem; }
+.about-card ul { list-style:none; }
+.about-card li {
+  padding:0.5rem 0; font-size:0.9rem; color:var(--text2);
+  border-bottom: 1px solid var(--border);
+  display:flex; justify-content:space-between;
+}
+.about-card li:last-child { border:none; }
+.about-card li .year { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--accent2); }
+
+/* Research */
+.research-tags {
+  display:flex; flex-wrap:wrap; gap:0.7rem; margin-top:1rem;
+}
+.research-tags .tag {
+  font-size:0.82rem; padding:0.5rem 1.2rem; border-radius:99px;
+  background: var(--bg3); border:1px solid var(--border);
+  color: var(--text2); transition: all .2s;
+}
+.research-tags .tag:hover {
+  border-color: var(--accent); color:var(--accent2);
+}
+
+/* Publications */
+.pub-list { display:flex; flex-direction:column; gap:0.8rem; }
+.pub-item {
+  background: var(--card); border:1px solid var(--border);
+  border-radius:12px; border-left:3px solid var(--accent);
+  padding:1.2rem 1.4rem;
+  backdrop-filter:blur(10px);
+  display:flex; gap:1rem; align-items:start;
+  transition: all .3s;
+}
+.pub-item:hover { border-color: #6366f144; transform:translateX(4px); }
+.pub-item .pub-left {
+  flex-shrink:0; display:flex; flex-direction:column; align-items:center;
+  min-width:48px; padding-top:2px;
+}
+.pub-item .pub-year {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.78rem; font-weight:700; color:var(--text2);
+}
+.pub-item .pub-venue-badge {
+  font-size:0.6rem; font-weight:700; letter-spacing:0.3px;
+  padding:0.2rem 0.5rem; border-radius:4px; margin-top:0.3rem;
+  text-transform:uppercase; white-space:nowrap;
+}
+.pub-item .pub-body { flex:1; min-width:0; }
+.pub-item .pub-thumb {
+  width:130px; height:85px; border-radius:8px; overflow:hidden;
+  border:1px solid var(--border); flex-shrink:0;
+  display:none;
+}
+.pub-item .pub-thumb.has-img { display:block; }
+.pub-item .pub-thumb img {
+  width:100%; height:100%; object-fit:cover;
+}
+.pub-item .title {
+  font-size:0.9rem; font-weight:600; line-height:1.5;
+  margin-bottom:0.25rem;
+}
+.pub-item .meta {
+  font-size:0.78rem; color:var(--text2); line-height:1.6;
+}
+.pub-item .venue {
+  font-weight:500; color: var(--cyan);
+}
+.pub-item .cite-badge .cite-label {
+  font-size:0.65rem; color:var(--text2); text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.pub-filter {
+  display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;
+}
+.pub-filter button {
+  background:var(--bg3); border:1px solid var(--border);
+  color:var(--text2); padding:0.4rem 1rem; border-radius:8px;
+  font-size:0.8rem; cursor:pointer; font-family:inherit;
+  transition: all .2s;
+}
+.pub-filter button.active, .pub-filter button:hover {
+  background:var(--accent); color:white; border-color:var(--accent);
+}
+
+/* GitHub section */
+.github-cards {
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap:1rem;
+}
+.repo-card {
+  background: var(--card); border:1px solid var(--border);
+  border-radius:12px; padding:1.3rem 1.5rem;
+  backdrop-filter:blur(10px); transition: all .3s;
+}
+.repo-card:hover {
+  border-color: #6366f144;
+  transform:translateY(-2px);
+}
+.repo-card .repo-name {
+  font-weight:600; font-size:0.95rem; color:var(--accent2);
+  margin-bottom:0.5rem; display:flex; align-items:center; gap:0.5rem;
+}
+.repo-card .repo-desc {
+  font-size:0.82rem; color:var(--text2); margin-bottom:0.8rem; line-height:1.5;
+}
+.repo-card .repo-stats {
+  display:flex; gap:1rem; font-size:0.78rem; color:var(--text2);
+}
+.repo-card .repo-stats i { margin-right:3px; }
+
+/* Footer */
+footer {
+  max-width:1200px; margin:4rem auto 0; padding:2rem;
+  border-top:1px solid var(--border);
+  text-align:center; color:var(--text2); font-size:0.82rem;
+}
+
+/* Responsive */
+@media (max-width:768px) {
+  nav .links { gap:1rem; }
+  .hero-inner { flex-direction:column; text-align:center; }
+  .hero-photo { width:160px; height:160px; }
+  .hero .affiliations { justify-content:center; }
+  .hero .social-links { justify-content:center; }
+  .about-grid { grid-template-columns:1fr; }
+  .pub-item { grid-template-columns:1fr; }
+  .pub-item .cite-badge { flex-direction:row; gap:0.5rem; }
+  section { padding: 4rem 1.2rem 2rem; }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+}
+
+/* Scroll animations */
+.reveal {
+  opacity:0; transform:translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="inner">
+    <div class="logo">Cong<span>Cong</span>(Thomas)</div>
+    <div class="links">
+      <a href="#news">News</a>
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#code">Code</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+  <div class="hero-photo">
+    <img src="Cong.jpg" alt="Cong Cong">
+  </div>
+  <div class="hero-content">
+    <div class="tag">Postdoctoral Fellow</div>
+    <h1>Cong Cong <span class="gradient">(Thomas)</span></h1>
+    <p class="subtitle">Researching AI for computational pathology, federated learning, and medical image analysis at Macquarie University, Sydney.</p>
+    <div class="affiliations">
+      <span><i class="fas fa-building" style="margin-right:4px;color:var(--accent2)"></i> Australian Institute of Health Innovation</span>
+      <span><i class="fas fa-microscope" style="margin-right:4px;color:var(--cyan)"></i> Centre for Health Informatics</span>
+      <span><i class="fas fa-graduation-cap" style="margin-right:4px;color:var(--amber)"></i> PhD, UNSW Sydney</span>
+    </div>
+    <div class="social-links">
+      <a href="https://scholar.google.com/citations?user=nkoXlaa-ODkC&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+      <a href="https://github.com/thomascong121" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/thomascong/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://researchers.mq.edu.au/en/persons/thomas-cong/" target="_blank" title="Macquarie University"><i class="fas fa-university"></i></a>
+      <a href="mailto:thomas.cong@mq.edu.au" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- Live Stats -->
+<section>
+  <div class="stats-bar reveal">
+    <div class="stat-card">
+      <div class="number accent" id="stat-citations">364</div>
+      <div class="label"><span class="live-dot"></span>Citations</div>
+    </div>
+    <div class="stat-card">
+      <div class="number green" id="stat-hindex">11</div>
+      <div class="label">h-index</div>
+    </div>
+    <div class="stat-card">
+      <div class="number amber" id="stat-i10">12</div>
+      <div class="label">i10-index</div>
+    </div>
+    <div class="stat-card">
+      <div class="number cyan" id="stat-papers">35+</div>
+      <div class="label">Publications</div>
+    </div>
+  </div>
+</section>
+
+<!-- News -->
+<section id="news">
+  <div class="section-header reveal">
+    <h2>Recent <span>News</span></h2>
+  </div>
+  <div class="news-list reveal" id="news-list"></div>
+  <button class="news-toggle" id="news-toggle" onclick="toggleNews()">Show earlier news</button>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-header reveal">
+    <h2>About <span>Me</span></h2>
+    <p>Computer vision researcher focused on building trustworthy AI for healthcare.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+      <ul>
+        <li><span>PhD, Computer Science, UNSW Sydney</span><span class="year">2020 - 2024</span></li>
+        <li><span>MSc, Information Technology, UNSW Sydney</span><span class="year">2018 - 2019</span></li>
+      </ul>
+    </div>
+    <div class="about-card reveal">
+      <h3><i class="fas fa-briefcase"></i> Experience</h3>
+      <ul>
+        <li><span>Postdoctoral Fellow, Macquarie University</span><span class="year">2024 -</span></li>
+        <li><span>Tutor, UNSW Sydney</span><span class="year">2023</span></li>
+        <li><span>Teaching Assistant, CMU</span><span class="year">2019</span></li>
+      </ul>
+    </div>
+    <div class="about-card reveal" style="grid-column:1/-1;">
+      <h3><i class="fas fa-flask"></i> Research Interests</h3>
+      <div class="research-tags">
+        <span class="tag">Digital Pathology</span>
+        <span class="tag">Whole-Slide Image Analysis</span>
+        <span class="tag">Federated Learning</span>
+        <span class="tag">Stain Normalisation</span>
+        <span class="tag">Class Imbalance Learning</span>
+        <span class="tag">Medical Image Segmentation</span>
+        <span class="tag">Dataset Distillation</span>
+        <span class="tag">Visual Prompt Tuning</span>
+        <span class="tag">Computational Neuro-oncology</span>
+        <span class="tag">Generative Models for Healthcare</span>
+      </div>
+    </div>
+    <div class="about-card reveal" style="grid-column:1/-1;">
+      <h3><i class="fas fa-trophy"></i> Awards</h3>
+      <ul>
+        <li><span>Macquarie Minds & Intelligences Initiative Early Career Researcher Grant</span><span class="year">2025</span></li>
+        <li><span>Norman Foo Memorial Best Research Paper Prize</span><span class="year">2023</span></li>
+        <li><span>Reviewer of the Month, Journal of Medical Artificial Intelligence</span><span class="year">2023</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications">
+  <div class="section-header reveal">
+    <h2>Selected <span>Publications</span></h2>
+    <p>Peer-reviewed papers in top venues. <a href="https://scholar.google.com/citations?user=nkoXlaa-ODkC&hl=en" target="_blank" style="color:var(--accent2)">Full list on Google Scholar &rarr;</a></p>
+  </div>
+  <div class="pub-filter reveal">
+    <button class="active" onclick="filterPubs('all',this)">All</button>
+    <button onclick="filterPubs('journal',this)">Journals</button>
+    <button onclick="filterPubs('conference',this)">Conferences</button>
+    <button onclick="filterPubs('first',this)">First Author</button>
+  </div>
+  <div class="pub-list reveal" id="pub-list"></div>
+</section>
+
+<!-- Code -->
+<section id="code">
+  <div class="section-header reveal">
+    <h2>Open-Source <span>Code</span></h2>
+    <p>Selected repositories on <a href="https://github.com/thomascong121" target="_blank" style="color:var(--accent2)">GitHub &rarr;</a></p>
+  </div>
+  <div class="github-cards reveal">
+    <div class="repo-card">
+      <div class="repo-name"><i class="fab fa-github"></i> CAGAN_Stain_Norm</div>
+      <div class="repo-desc">Colour adaptive generative networks for stain normalisation of histopathology images (Medical Image Analysis 2022)</div>
+      <div class="repo-stats"><span><i class="fas fa-star"></i> 10</span><span><i class="fas fa-code-branch"></i> 1</span><span><i class="fas fa-circle" style="color:var(--amber);font-size:8px"></i> Python</span></div>
+    </div>
+    <div class="repo-card">
+      <div class="repo-name"><i class="fab fa-github"></i> SocialDistance</div>
+      <div class="repo-desc">Occlusion-aware crowd detection for social distancing (ICARCV 2020)</div>
+      <div class="repo-stats"><span><i class="fas fa-star"></i> 7</span><span><i class="fas fa-code-branch"></i> 1</span><span><i class="fas fa-circle" style="color:#e34c26;font-size:8px"></i> Jupyter</span></div>
+    </div>
+    <div class="repo-card">
+      <div class="repo-name"><i class="fab fa-github"></i> Machine_Learning</div>
+      <div class="repo-desc">Course materials for UNSW COMP9417</div>
+      <div class="repo-stats"><span><i class="fas fa-star"></i> 10</span><span><i class="fas fa-code-branch"></i> 3</span><span><i class="fas fa-circle" style="color:#e34c26;font-size:8px"></i> Jupyter</span></div>
+    </div>
+    <div class="repo-card">
+      <div class="repo-name"><i class="fab fa-github"></i> ImageProcessSlider</div>
+      <div class="repo-desc">Interactive image processing visualisation tool</div>
+      <div class="repo-stats"><span><i class="fas fa-star"></i> 1</span><span><i class="fas fa-circle" style="color:#3572a5;font-size:8px"></i> Python</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-header reveal">
+    <h2>Get in <span>Touch</span></h2>
+  </div>
+  <div class="about-card reveal" style="max-width:600px;">
+    <ul>
+      <li><span><i class="fas fa-envelope" style="color:var(--accent2);margin-right:8px"></i> thomas.cong@mq.edu.au</span></li>
+      <li><span><i class="fas fa-map-marker-alt" style="color:var(--rose);margin-right:8px"></i> Sydney, NSW, Australia</span></li>
+      <li><span><i class="fas fa-id-card" style="color:var(--cyan);margin-right:8px"></i> ORCID: 0000-0002-8192-6731</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Cong Cong. Built with purpose, not templates.</p>
+</footer>
+
+<script>
+// News data
+const news = [
+  {date:"Jun 2026", text:"Paper accepted to <b>MICCAI 2026</b>: \"Generative Anchor-Guided Federated Domain Generalization for Heterogeneous Pan Cancer Image Analysis\"", type:"paper", tag:"top"},
+  {date:"Jun 2026", text:"Paper accepted to <b>ICML 2026</b>: \"Federated Distillation for Whole Slide Image via Gaussian-Mixture Feature Alignment and Curriculum Integration\"", type:"paper", tag:"top"},
+  {date:"Mar 2026", text:"Paper accepted to <b>ICLR 2026</b>: \"Visual Prompt-Agnostic Evolution\" on training stability for Vision Transformer adaptation via frequency-domain modelling", type:"paper", tag:"top"},
+  {date:"Jun 2025", text:"Paper published in <b>Expert Systems with Applications</b>: \"Slide-Aware Deep Feature Prompting for Enhanced Whole Slide Image Classification\"", type:"paper", tag:"journal"},
+  {date:"May 2025", text:"Paper published in <b>npj Digital Medicine</b>: \"Flexible and scalable federated learning with deep feature prompts for digital pathology\"", type:"paper", tag:"journal"},
+  {date:"May 2025", text:"Three papers accepted to <b>MICCAI 2025</b>: brain tumour segmentation with missing modalities, MRI-to-PET diffusion generation, and federated WSI classification via dataset distillation", type:"paper", tag:"top"},
+  {date:"Apr 2025", text:"Awarded the <b>Macquarie Minds & Intelligences Initiative 2025 Early Career Researcher Grant</b> for AI-driven healthcare research", type:"award", tag:"grant"},
+  {date:"2025", text:"Papers published in <b>Knowledge-Based Systems</b> and <b>IEEE JBHI</b> on semi-supervised tumour segmentation and fetal head segmentation", type:"paper", tag:"journal"},
+  {date:"2025", text:"Google Scholar citations surpassed <b>360</b>, with over 120 new citations gained in 2025", type:"milestone", tag:""},
+  {date:"Oct 2024", text:"Paper accepted to <b>AAAI 2024</b>: \"Decoupled Optimisation for Long-Tailed Visual Recognition\"", type:"paper", tag:"top"},
+  {date:"Aug 2024", text:"Paper accepted to <b>USENIX Security 2024</b>: adversarial video defense via discretization-enhanced compressive sensing", type:"paper", tag:"top"},
+  {date:"Jul 2024", text:"Paper published in <b>Expert Systems with Applications</b>: \"Adaptive Unified Contrastive Learning with Graph-Based Feature Aggregator for Imbalanced Medical Image Classification\"", type:"paper", tag:"journal"},
+  {date:"Jul 2024", text:"Paper accepted to <b>ECAI 2024</b>: domain-generalised cell nuclei segmentation using curriculum learning and meta learning", type:"paper", tag:"top"},
+  {date:"Jun 2024", text:"Completed <b>PhD in Computer Science</b> from UNSW Sydney", type:"milestone", tag:""},
+  {date:"2024", text:"Joined <b>Macquarie University</b> as Postdoctoral Fellow in AI for Computational Neuro-oncology", type:"milestone", tag:""},
+  {date:"2023", text:"Awarded <b>Norman Foo Memorial Best Research Paper Prize</b> at UNSW", type:"award", tag:"grant"},
+  {date:"2023", text:"Named <b>Reviewer of the Month</b> by Journal of Medical Artificial Intelligence", type:"award", tag:"grant"},
+];
+
+const NEWS_INITIAL = 8;
+let newsExpanded = false;
+
+function renderNews() {
+  const list = document.getElementById('news-list');
+  const toggle = document.getElementById('news-toggle');
+  const shown = newsExpanded ? news.length : NEWS_INITIAL;
+  list.innerHTML = news.slice(0, shown).map(n => {
+    const dotClass = n.type === 'award' ? 'award' : n.type === 'milestone' ? 'milestone' : 'paper';
+    const tagHtml = n.tag === 'top' ? '<span class="venue-tag top">Top Venue</span>'
+      : n.tag === 'journal' ? '<span class="venue-tag journal">Journal</span>'
+      : n.tag === 'grant' ? '<span class="venue-tag grant">Award</span>' : '';
+    return `<div class="news-item">
+      <div class="news-dot ${dotClass}"></div>
+      <div class="news-body">
+        <div class="news-date">${n.date}</div>
+        <div class="news-text">${n.text} ${tagHtml}</div>
+      </div>
+    </div>`;
+  }).join('');
+  if (news.length > NEWS_INITIAL) {
+    toggle.style.display = 'inline-block';
+    toggle.textContent = newsExpanded ? 'Show less' : `Show earlier news (${news.length - NEWS_INITIAL} more)`;
+  }
+}
+
+function toggleNews() {
+  newsExpanded = !newsExpanded;
+  renderNews();
+}
+
+renderNews();
+
+// Publication data
+// To add a real thumbnail: set thumb to the image path, e.g. "thumbs/cagan.png"
+const VENUE_COLORS = {
+  "MedIA":"#6366f1","MICCAI":"#8b5cf6","ICML":"#dc2626","ICLR":"#e11d48","CVPR":"#f97316",
+  "AAAI":"#ef4444","USENIX":"#ea580c","ISBI":"#0ea5e9","ESWA":"#14b8a6","npj":"#0d9488",
+  "NeuralNet":"#22c55e","JEADV":"#ec4899","ECAI":"#a855f7","arXiv":"#6b7280",
+  "ArchPath":"#f59e0b","KBS":"#06b6d4","JBHI":"#0284c7",
+};
+function venueColor(v) {
+  for (const [k,c] of Object.entries(VENUE_COLORS)) { if (v.includes(k) || v.toLowerCase().includes(k.toLowerCase())) return c; }
+  const shortMap = {"Medical Image Analysis":"#6366f1","Expert Systems":"#14b8a6","Neural Networks":"#22c55e",
+    "Archives":"#f59e0b","JEADV":"#ec4899","arXiv":"#6b7280","Knowledge":"#06b6d4","IEEE J":"#0284c7","npj":"#0d9488"};
+  for (const [k,c] of Object.entries(shortMap)) { if (v.includes(k)) return c; }
+  return "#6366f1";
+}
+function venueAbbr(v) {
+  const map = {"Medical Image Analysis":"MedIA","Archives of Pathology":"Arch Path",
+    "Expert Systems":"ESWA","Neural Networks":"NeuralNet","JEADV":"JEADV","arXiv":"arXiv",
+    "Knowledge-Based":"KBS","IEEE J":"JBHI"};
+  for (const [k,a] of Object.entries(map)) { if (v.includes(k)) return a; }
+  return v.split(/[\s(]+/).slice(0,2).join(' ');
+}
+
+const pubs = [
+  // To add a real thumbnail: set thumb to the image path, e.g. "thumbs/cagan.png"
+  // --- 2026 ---
+  {title:"Slide-Aware Deep Feature Prompting for Enhanced Whole Slide Image Classification", authors:"C Cong, Y Song, A Di Ieva, Q Jin, L Fan, A Chou, AJ Gill, S Liu", venue:"Expert Systems with Applications", year:2026, type:"journal", first:true, thumb:""},
+  {title:"Flexible and scalable federated learning with deep feature prompts for digital pathology", authors:"C Cong, Y Song, A Di Ieva, A Chou, AJ Gill, E Coiera, S Liu", venue:"npj Digital Medicine", year:2026, type:"journal", first:true, thumb:""},
+  {title:"Federated Distillation for Whole Slide Image via Gaussian-Mixture Feature Alignment and Curriculum Integration", authors:"L Jing, C Cong, Y Chen, Y Cao", venue:"ICML 2026", year:2026, type:"conference", first:false, thumb:""},
+  {title:"Generative Anchor-Guided Federated Domain Generalization for Heterogeneous Pan Cancer Image Analysis", authors:"C Cong, et al.", venue:"MICCAI 2026", year:2026, type:"conference", first:true, thumb:""},
+  {title:"Visual Prompt-Agnostic Evolution", authors:"J Wang, L Fan, D Zhang, W Jing, D Di, Y Song, S Liu, C Cong", venue:"ICLR 2026", year:2026, type:"conference", first:false, thumb:""},
+  {title:"SHAPE: Structure-aware Hierarchical Unsupervised Domain Adaptation with Plausibility Evaluation for Medical Image Segmentation", authors:"L Zhou, Y Xia, Y Shen, X Li, W Du, C Cong, L Wei, R Su, Q Jin", venue:"CVPR 2026", year:2026, type:"conference", first:false, thumb:""},
+  // --- 2025 ---
+  {title:"Hypergraph Tversky-aware domain incremental learning for brain tumor segmentation with missing modalities", authors:"J Wang, L Fan, W Jing, D Di, Y Song, S Liu, C Cong", venue:"MICCAI 2025", year:2025, type:"conference", first:false, thumb:""},
+  {title:"FedWSIDD: Federated whole slide image classification via dataset distillation", authors:"H Jin, S Liu, C Cong, Q Feng, Y Liu, L Huang, Y Hu", venue:"MICCAI 2025", year:2025, type:"conference", first:false, thumb:""},
+  {title:"Multi-sequence MRI to multi-tracer PET generation via diffusion model", authors:"W Zhong, C Cong, G Azemi, M Tabassum, A Di Ieva, S Liu", venue:"IEEE ISBI 2025", year:2025, type:"conference", first:false, thumb:""},
+  {title:"Iterative pseudo-labeling based adaptive copy-paste supervision for semi-supervised tumor segmentation", authors:"Q Jin, H Cui, J Wang, C Sun, Y He, P Xuan, L Wang, C Cong, L Wei, R Su", venue:"Knowledge-Based Systems", year:2025, type:"journal", first:false, thumb:""},
+  // --- 2024 ---
+  {title:"Adaptive unified contrastive learning with graph-based feature aggregator for imbalanced medical image classification", authors:"C Cong, S Liu, P Rana, M Pagnucco, A Di Ieva, S Berkovsky, Y Song", venue:"Expert Systems with Applications", year:2024, type:"journal", first:true, thumb:""},
+  {title:"Decoupled optimisation for long-tailed visual recognition", authors:"C Cong, S Xuan, S Liu, S Zhang, M Pagnucco, Y Song", venue:"AAAI 2024", year:2024, type:"conference", first:true, thumb:""},
+  {title:"Correction-based defense against adversarial video attacks via Discretization-Enhanced video compressive sensing", authors:"W Song, C Cong, H Zhong, J Xue", venue:"USENIX Security 2024", year:2024, type:"conference", first:false, thumb:""},
+  {title:"Weakly supervised deep learning image analysis can differentiate melanoma from naevi on H&E-stained slides", authors:"NG Maher, H Danaei Mehr, C Cong, NA Adegoke, IA Vergara, S Liu, et al.", venue:"JEADV", year:2024, type:"journal", first:false, thumb:""},
+  {title:"Dataset distillation for histopathology image classification", authors:"C Cong, S Xuan, S Liu, M Pagnucco, S Zhang, Y Song", venue:"arXiv preprint", year:2024, type:"journal", first:true, thumb:""},
+  {title:"Domain Generalised Cell Nuclei Segmentation in Histopathology Images Using Domain-Aware Curriculum Learning and Colour-Perceived Meta Learning", authors:"K Xie, R Guo, C Cong, M Pagnucco, Y Song", venue:"ECAI 2024", year:2024, type:"conference", first:false, thumb:""},
+  // --- 2023 ---
+  {title:"AI-assisted classification of gliomas using whole slide images", authors:"L Jose, S Liu, C Russo, C Cong, Y Song, M Rodriguez, A Di Ieva", venue:"Archives of Pathology & Laboratory Medicine", year:2023, type:"journal", first:false, thumb:""},
+  {title:"Multi-scale multi-reception attention network for bone age assessment in X-ray images", authors:"Z Yang, C Cong, M Pagnucco, Y Song", venue:"Neural Networks", year:2023, type:"journal", first:false, thumb:""},
+  // --- 2022 ---
+  {title:"Colour adaptive generative networks for stain normalisation of histopathology images", authors:"C Cong, S Liu, A Di Ieva, M Pagnucco, S Berkovsky, Y Song", venue:"Medical Image Analysis", year:2022, type:"journal", first:true, thumb:""},
+  {title:"Imbalanced histopathology image classification using deep feature graph attention network", authors:"C Cong, Y Yang, S Liu, M Pagnucco, Y Song", venue:"IEEE ISBI 2022", year:2022, type:"conference", first:true, thumb:""},
+  // --- 2021 ---
+  {title:"Semi-supervised adversarial learning for stain normalisation in histopathology images", authors:"C Cong, S Liu, A Di Ieva, M Pagnucco, S Berkovsky, Y Song", venue:"MICCAI 2021", year:2021, type:"conference", first:true, thumb:""},
+  {title:"Texture enhanced generative adversarial network for stain normalisation in histopathology images", authors:"C Cong, S Liu, A Di Ieva, M Pagnucco, S Berkovsky, Y Song", venue:"IEEE ISBI 2021", year:2021, type:"conference", first:true, thumb:""},
+];
+
+function renderPubs(filter) {
+  const list = document.getElementById('pub-list');
+  let filtered = pubs;
+  if (filter === 'journal') filtered = pubs.filter(p => p.type === 'journal');
+  else if (filter === 'conference') filtered = pubs.filter(p => p.type === 'conference');
+  else if (filter === 'first') filtered = pubs.filter(p => p.first);
+  filtered.sort((a,b) => b.year - a.year || b.first - a.first || a.title.localeCompare(b.title));
+  list.innerHTML = filtered.map(p => {
+    const vc = venueColor(p.venue);
+    const va = venueAbbr(p.venue);
+    const thumbHtml = p.thumb
+      ? `<div class="pub-thumb has-img"><img src="${p.thumb}" alt="thumbnail"></div>` : '';
+    return `<div class="pub-item" style="border-left-color:${vc}">
+      <div class="pub-left">
+        <span class="pub-year">${p.year}</span>
+        <span class="pub-venue-badge" style="background:${vc}22;color:${vc};border:1px solid ${vc}44">${va}</span>
+      </div>
+      <div class="pub-body">
+        <div class="title">${p.title}</div>
+        <div class="meta">${p.authors}<br><span class="venue">${p.venue}</span></div>
+      </div>
+      ${thumbHtml}
+    </div>`;
+  }).join('');
+}
+
+function filterPubs(filter, btn) {
+  document.querySelectorAll('.pub-filter button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPubs(filter);
+}
+
+// Animated counter
+function animateCounter(el, target) {
+  const isNum = !isNaN(parseInt(target));
+  if (!isNum) { el.textContent = target; return; }
+  const end = parseInt(target);
+  const duration = 1500;
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * end);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Stats counter animation on scroll
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.stat-card .number').forEach(el => {
+        animateCounter(el, el.textContent.trim());
+      });
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+statsObserver.observe(document.querySelector('.stats-bar'));
+
+// Init
+renderPubs('all');
+</script>
+</body>
+</html>
