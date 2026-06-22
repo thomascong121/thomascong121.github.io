@@ -62,8 +62,8 @@ a:hover { color: var(--global-hover-color); text-decoration: underline; }
 }
 .about-intro-text { flex: 1; }
 .about-intro-photo {
-  flex: 0 0 24%;
-  max-width: 24%;
+  flex: 0 0 16%;
+  max-width: 16%;
   position: relative;
   right: clamp(0rem, 6vw, 6rem);
 }
@@ -638,9 +638,10 @@ footer.sticky-bottom {
 const news = [
   {date:"Jun 2026", text:'Paper accepted to <b>MICCAI 2026</b>: "Generative Anchor-Guided Federated Domain Generalization for Heterogeneous Pan Cancer Image Analysis"'},
   {date:"Jun 2026", text:'Paper accepted to <b>ICML 2026</b>: "Federated Distillation for Whole Slide Image via Gaussian-Mixture Feature Alignment and Curriculum Integration"'},
+  {date:"Mar 2026", text:'Paper accepted to <b>CVPR 2026</b>: "SHAPE: Structure-aware Hierarchical Unsupervised Domain Adaptation with Plausibility Evaluation for Medical Image Segmentation"'},
   {date:"Mar 2026", text:'Paper accepted to <b>ICLR 2026</b>: "Visual Prompt-Agnostic Evolution" on training stability for Vision Transformer adaptation via frequency-domain modelling'},
-  {date:"Jun 2025", text:'Paper published in <b>Expert Systems with Applications</b>: "Slide-Aware Deep Feature Prompting for Enhanced Whole Slide Image Classification"'},
-  {date:"May 2025", text:'Paper published in <b>npj Digital Medicine</b>: "Flexible and scalable federated learning with deep feature prompts for digital pathology"'},
+  {date:"Jun 2026", text:'Paper published in <b>Expert Systems with Applications</b>: "Slide-Aware Deep Feature Prompting for Enhanced Whole Slide Image Classification"'},
+  {date:"Jun 2026", text:'Paper published in <b>npj Digital Medicine</b>: "Flexible and scalable federated learning with deep feature prompts for digital pathology"'},
   {date:"May 2025", text:'Three papers accepted to <b>MICCAI 2025</b>: brain tumour segmentation with missing modalities, MRI-to-PET diffusion generation, and federated WSI classification via dataset distillation'},
   {date:"Apr 2025", text:'Awarded the <b>Macquarie Minds & Intelligences Initiative 2025 Early Career Researcher Grant</b> for AI-driven healthcare research'},
   {date:"2025", text:'Papers published in <b>Knowledge-Based Systems</b> and <b>IEEE JBHI</b> on semi-supervised tumour segmentation and fetal head segmentation'},
@@ -654,6 +655,16 @@ const news = [
   {date:"2023", text:'Awarded <b>Norman Foo Memorial Best Research Paper Prize</b> at UNSW'},
   {date:"2023", text:'Named <b>Reviewer of the Month</b> by Journal of Medical Artificial Intelligence'},
 ];
+
+const MONTH_ORDER = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+function newsSort(a, b) {
+  const [ma, ya] = a.date.split(' ');
+  const [mb, yb] = b.date.split(' ');
+  const yearA = parseInt(ya || ma), yearB = parseInt(yb || mb);
+  if (yearA !== yearB) return yearB - yearA;
+  return (MONTH_ORDER[mb] || 0) - (MONTH_ORDER[ma] || 0);
+}
+news.sort(newsSort);
 
 const NEWS_INITIAL = 8;
 let newsExpanded = false;
